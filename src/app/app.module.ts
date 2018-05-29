@@ -9,10 +9,10 @@ import { WpApiService } from './services/wp-api/wp-api.service';
 
 // components
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { CategoryComponent } from './category/category.component';
-import { PostComponent } from './post/post.component';
-import { HeadComponent } from './head/head.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { CategoryComponent } from './components/category/category.component';
+import { PostComponent } from './components/post/post.component';
+import { HeadComponent } from './components/head/head.component';
 
 
 @NgModule({

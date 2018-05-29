@@ -1,7 +1,13 @@
+// angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
+// services
+import { ConfigService } from './services/config/config.service';
+import { WpApiService } from './services/wp-api/wp-api.service';
 
+// components
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { CategoryComponent } from './category/category.component';
@@ -18,9 +24,13 @@ import { HeadComponent } from './head/head.component';
     HeadComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ConfigService,
+    WpApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

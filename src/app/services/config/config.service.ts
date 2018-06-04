@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 } */)
 export class ConfigService {
 
-  configUrl = 'assets/config.json';
+  private configUrl = 'assets/config.json';
 
   constructor( private http: HttpClient ) { }
 

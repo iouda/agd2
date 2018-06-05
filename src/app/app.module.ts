@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 // modules
-import { InViewportModule } from 'ng-in-viewport';
 
 // services
 import { ConfigService } from './services/config/config.service';
@@ -18,6 +17,9 @@ import { PostComponent } from './components/post/post.component';
 import { HeadComponent } from './components/head/head.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
+// directives
+import { AppearDirective } from './directives/appear/appear.directive';
+
 
 @NgModule({
   declarations: [
@@ -26,13 +28,13 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     CategoryComponent,
     PostComponent,
     HeadComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    AppearDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
-  exports: [ InViewportModule ],
   providers: [
     ConfigService,
     WpApiService

@@ -13,6 +13,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { CategoryComponent } from './components/category/category.component';
 import { PostComponent } from './components/post/post.component';
 import { HeadComponent } from './components/head/head.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HeadComponent } from './components/head/head.component';
     MenuComponent,
     CategoryComponent,
     PostComponent,
-    HeadComponent
+    HeadComponent,
+    ImageSliderComponent
   ],
   imports: [
     BrowserModule,

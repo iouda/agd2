@@ -16,10 +16,12 @@ import 'rxjs/add/observable/of';
 } */)
 export class WpApiService {
 
-  // wpApiUrlSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
-
   private headers: HttpHeaders;
   private wpApiUrl: string;
+  // public variables
+  maxResults = 100;
+  orderby = 'date';
+  order = 'asc'; // asc | desc
 
   constructor(
     private http: HttpClient,
@@ -42,7 +44,9 @@ export class WpApiService {
     // return observable
     return this.read(
       'categories' +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
   // get category by ID
@@ -54,7 +58,9 @@ export class WpApiService {
     // return observable
     return this.read(
       'categories/' + id +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
   // get posts
@@ -65,7 +71,9 @@ export class WpApiService {
     // return observable
     return this.read(
       'posts' +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
   // get post by ID
@@ -77,7 +85,9 @@ export class WpApiService {
     // return observable
     return this.read(
       'posts/' + id +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
 

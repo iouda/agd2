@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+// modules
+import { InViewportModule } from 'ng-in-viewport';
+
 // services
 import { ConfigService } from './services/config/config.service';
 import { WpApiService } from './services/wp-api/wp-api.service';
@@ -29,6 +32,7 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     BrowserModule,
     HttpClientModule
   ],
+  exports: [ InViewportModule ],
   providers: [
     ConfigService,
     WpApiService

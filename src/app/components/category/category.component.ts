@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
+
+// services
+import { WpApiService } from '../../services/wp-api/wp-api.service';
+
+// models
+import { Category } from '../../models/category';
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-category',
@@ -7,9 +14,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  @Input() category: Category;
+  posts: Post[] = [];
+
+  constructor(
+    private wpApiService: WpApiService
+  ) { }
 
   ngOnInit() {
+    // console.log('category in category.component', this.category);
+    // get category posts
+    this.wpApiService.getPosts('category_name', this.category.slug).subscribe((posts: any) => {
+      if (posts) {
+        // console.log('loaded posts', posts);
+        for (let i = 0; i < posts.length; i++) {
+          this.posts.push(
+            new Post(
+              posts[i].id,
+              posts[i].title.rendered,
+              posts[i].content.rendered,
+              posts[i].slug,
+              ((posts[i].featuredMedia < 0) ? posts[i].featuredMedia : undefined),
+              posts[i].modified_gmt,
+              this.getImagesFromPostContent(posts[i].content.rendered)
+            )
+          );
+        }
+        // console.log('model posts', this.posts);
+      }
+    });
+  }
+
+  /**
+   *
+   *
+   * @private
+   * @param {string} postContent
+   * @returns {*}
+   * @memberof CategoryComponent
+   */
+
+  private getImagesFromPostContent(postContent: string): any {
+    // create temp nativeElement
+    const tmp = document.createElement('div');
+    // set innerHTML from postContent
+    tmp.innerHTML = postContent;
+    // select images
+    const images = tmp.querySelectorAll('img');
+    // if post has images
+    if (images.length > 0) {
+      return images;
+    }
+    // default
+    return undefined;
   }
 
 }

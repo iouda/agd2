@@ -3,7 +3,11 @@
   <!-- SLIDER TITLE -->
   <div class="slider-title">{{title}}</div>
   <!-- SLIDER -->
-  <div #slider></div>
+  <div #slider>
+    <ng-container *ngFor="let image of images">
+      <div appAppear class="image-container inactive" (appear)="onScreen($event, image)" ></div>
+    </ng-container>
+  </div>
   <!-- SLIDER CONTROLS -->
   <div class="slider-controls">
     <button class="prev" (click)="prevImage()">PREVIOUS</button>

@@ -18,24 +18,17 @@ export class ImageSliderComponent implements OnInit {
   imageIndex = 0;
   numberOfImages: number;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    // convert NodeList to Array
-    this.images = Array.prototype.slice.call(this.images);
     // set numberOfImages
     this.numberOfImages = this.images.length;
-    // for each image create container and add image to it
-    this.images.forEach((image) => {
-      const imageContainer = document.createElement('div');
-      imageContainer.className = 'image-container';
-      imageContainer.appendChild(image); // TODO: append while is container on screen
-      this.slider.nativeElement.appendChild(imageContainer);
-    });
   }
 
-  onScreen(imageContainer: ElementRef) {
-    // TODO: https://github.com/k3nsei/ng-in-viewport
+  onScreen(element: ElementRef, image: any) {
+    element.nativeElement.appendChild( image );
+    element.nativeElement.classList.remove('inactive');
+    element.nativeElement.classList.add('active');
   }
 
   nextImage() {
@@ -53,6 +46,10 @@ export class ImageSliderComponent implements OnInit {
       this.numberOfImages - 1
     );
     console.log('prevImage imageIndex', this.imageIndex);
+  }
+
+  log(key: any, value: any) {
+    console.log(key, value);
   }
 
 }

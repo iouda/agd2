@@ -5,7 +5,9 @@
   <!-- SLIDER -->
   <div #slider>
     <ng-container *ngFor="let image of images">
-      <div appAppear class="image-container inactive" (appear)="onScreen($event, image)" ></div>
+      <div appAppear class="image-container inactive" (appear)="onScreen($event, image)" >
+        <span class="loader">Loading...</span>
+      </div>
     </ng-container>
   </div>
   <!-- SLIDER CONTROLS -->

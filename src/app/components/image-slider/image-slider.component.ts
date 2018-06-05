@@ -26,6 +26,8 @@ export class ImageSliderComponent implements OnInit {
   }
 
   onScreen(element: ElementRef, image: any) {
+    element.nativeElement.innerHTML = '';
+    // TODO: image on load
     element.nativeElement.appendChild( image );
     element.nativeElement.classList.remove('inactive');
     element.nativeElement.classList.add('active');

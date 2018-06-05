@@ -1,1 +1,5 @@
 <app-menu></app-menu>
+
+<div *ngFor="let category of categories">
+    <app-category id="category-{{category.id}}" [category]="category"></app-category>
+</div>

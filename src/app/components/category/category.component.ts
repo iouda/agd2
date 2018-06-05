@@ -61,6 +61,13 @@ export class CategoryComponent implements OnInit {
     tmp.innerHTML = postContent;
     // select images
     let images = tmp.querySelectorAll('img');
+    // clean wp images
+    for (let i = 0; i < images.length; i++) {
+      // console.log('image', images[i]);
+      images[i].removeAttribute('width');
+      images[i].removeAttribute('height');
+      images[i].removeAttribute('class');
+    }
     // convert NodeList to Array
     images = Array.prototype.slice.call(images);
     // if post has images

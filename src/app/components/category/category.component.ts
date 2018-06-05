@@ -45,8 +45,8 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  slideIndex(object: any) {
-    console.log('slideIndex', object);
+  activeSlide(object: any) {
+    console.log('activeSlide', object);
   }
 
   /**

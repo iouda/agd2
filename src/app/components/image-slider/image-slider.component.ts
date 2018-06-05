@@ -20,7 +20,7 @@ export class ImageSliderComponent implements OnInit {
   @Input() images: Array<any>;
 
   // outputs
-  @Output() slideIndex: EventEmitter<any> = new EventEmitter<any>();
+  @Output() activeSlide: EventEmitter<any> = new EventEmitter<any>();
 
   // slider ElementRef
   @ViewChild('slider') slider: ElementRef;
@@ -50,9 +50,11 @@ export class ImageSliderComponent implements OnInit {
       this.imageIndex + 1 :
       0
     );
-    this.slideIndex.emit({
-      slideIndex: this.imageIndex,
-      slideElement: this.images[this.imageIndex]
+    this.activeSlide.emit({
+      slider: this.slider.nativeElement,
+      activeSlideIndex: this.imageIndex,
+      activeSlideElement: this.images[this.imageIndex],
+      slideDirection: 'next'
     });
     // console.log('nextImage imageIndex', this.imageIndex);
   }
@@ -62,9 +64,11 @@ export class ImageSliderComponent implements OnInit {
       this.imageIndex - 1 :
       this.numberOfImages - 1
     );
-    this.slideIndex.emit({
-      slideIndex: this.imageIndex,
-      slideElement: this.images[this.imageIndex]
+    this.activeSlide.emit({
+      slider: this.slider.nativeElement,
+      activeSlideIndex: this.imageIndex,
+      activeSlideElement: this.images[this.imageIndex],
+      slideDirection: 'prev'
     });
     // console.log('prevImage imageIndex', this.imageIndex);
   }

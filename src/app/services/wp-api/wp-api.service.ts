@@ -30,13 +30,6 @@ export class WpApiService {
       'Content-Type': 'application/json'/* ,
       'Authorization': this.token */
     });
-
-    // subscribe wp api url
-    /* this.wpApiUrlSubject.subscribe((url: string) => {
-      if (url) {
-        this.wpApiUrl = url;
-      }
-    }); */
   }
 
   // READ API

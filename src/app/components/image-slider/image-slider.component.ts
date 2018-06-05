@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  ViewChild,
+  ElementRef,
+  EventEmitter
+} from '@angular/core';
 
 @Component({
   selector: 'app-image-slider',
@@ -11,7 +19,10 @@ export class ImageSliderComponent implements OnInit {
   @Input() title: string;
   @Input() images: Array<any>;
 
-  // slider
+  // outputs
+  @Output() slideIndex: EventEmitter<any> = new EventEmitter<any>();
+
+  // slider ElementRef
   @ViewChild('slider') slider: ElementRef;
 
   // public vars
@@ -39,7 +50,11 @@ export class ImageSliderComponent implements OnInit {
       this.imageIndex + 1 :
       0
     );
-    console.log('nextImage imageIndex', this.imageIndex);
+    this.slideIndex.emit({
+      slideIndex: this.imageIndex,
+      slideElement: this.images[this.imageIndex]
+    });
+    // console.log('nextImage imageIndex', this.imageIndex);
   }
   prevImage() {
     this.imageIndex = (
@@ -47,7 +62,11 @@ export class ImageSliderComponent implements OnInit {
       this.imageIndex - 1 :
       this.numberOfImages - 1
     );
-    console.log('prevImage imageIndex', this.imageIndex);
+    this.slideIndex.emit({
+      slideIndex: this.imageIndex,
+      slideElement: this.images[this.imageIndex]
+    });
+    // console.log('prevImage imageIndex', this.imageIndex);
   }
 
   log(key: any, value: any) {

@@ -45,6 +45,10 @@ export class CategoryComponent implements OnInit {
     });
   }
 
+  slideIndex(object: any) {
+    console.log('slideIndex', object);
+  }
+
   /**
    *
    *

@@ -11,6 +11,15 @@ import { Subject } from 'rxjs/Subject';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/observable/of';
 
+
+
+/**
+ * wp cRud API
+ *
+ * @export
+ * @class WpApiService
+ */
+
 @Injectable(/* {
   providedIn: 'root'
 } */)
@@ -34,8 +43,17 @@ export class WpApiService {
     });
   }
 
+
   // READ API
-  // get all categories
+  /**
+   * get all categories
+   * filter query
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getCategories(
     filterName?: string,
     filterValue?: string
@@ -49,7 +67,17 @@ export class WpApiService {
       ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
-  // get category by ID
+
+  /**
+   * get category by ID
+   * filter query
+   * @param {number} id
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getCategory(
     id: number,
     filterName?: string,
@@ -63,7 +91,16 @@ export class WpApiService {
       ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
-  // get posts
+
+  /**
+   * get posts
+   * filter query
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getPosts(
     filterName?: string,
     filterValue?: string
@@ -76,7 +113,17 @@ export class WpApiService {
       ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
-  // get post by ID
+
+  /**
+   * get post by id
+   * filter query
+   * @param {number} id
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getPost(
     id: number,
     filterName?: string,
@@ -93,7 +140,14 @@ export class WpApiService {
 
 
 
-  // read
+  /**
+   * read from endpoint
+   * get wp results
+   * @param {string} endpoint
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   read(endpoint: string): Observable<any> {
     // subject of url
     const subject: Subject<any> = new Subject<any>();

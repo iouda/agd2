@@ -60,7 +60,9 @@ export class CategoryComponent implements OnInit {
     // set innerHTML from postContent
     tmp.innerHTML = postContent;
     // select images
-    const images = tmp.querySelectorAll('img');
+    let images = tmp.querySelectorAll('img');
+    // convert NodeList to Array
+    images = Array.prototype.slice.call(images);
     // if post has images
     if (images.length > 0) {
       return images;

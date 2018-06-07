@@ -59,12 +59,14 @@ export class CategoryComponent implements OnInit {
    */
 
   private getImagesFromPostContent(postContent: string): any {
+    // search for src and replace by data-src for lazy loading
+    postContent = postContent.replace(/src\=\"/g, 'data-src="').replace(/srcset\=\"/g, 'data-srcset="');
     // create temp nativeElement
     const tmp = document.createElement('div');
     // set innerHTML from postContent
     tmp.innerHTML = postContent;
     // select images
-    let images = tmp.querySelectorAll('img');
+    const images = tmp.querySelectorAll('img');
     // clean wp images
     for (let i = 0; i < images.length; i++) {
       // console.log('image', images[i]);
@@ -73,7 +75,7 @@ export class CategoryComponent implements OnInit {
       images[i].removeAttribute('class');
     }
     // convert NodeList to Array
-    images = Array.prototype.slice.call(images);
+    // images = Array.prototype.slice.call(images);
     // if post has images
     if (images.length > 0) {
       return images;

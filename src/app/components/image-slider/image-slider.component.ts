@@ -36,12 +36,27 @@ export class ImageSliderComponent implements OnInit {
     this.numberOfImages = this.images.length;
   }
 
-  onScreen(element: ElementRef, image: any) {
-    element.nativeElement.innerHTML = '';
-    // TODO: image on load
-    element.nativeElement.appendChild( image );
-    element.nativeElement.classList.remove('inactive');
-    element.nativeElement.classList.add('active');
+  onScreen(imageContainer: ElementRef, image: any) {
+    // lazy loading images
+    image.classList.add('loading');
+    const lazyImage = new Image();
+    lazyImage.onload = function() {
+      image.src = lazyImage.src;
+      image.srcset = lazyImage.srcset;
+      // set image class to loaded
+      image.classList.remove('loading');
+      image.classList.add('loaded');
+      // remove loader (or whatever) from image container
+      imageContainer.nativeElement.innerHTML = '';
+      // append loaded image to image-container
+      imageContainer.nativeElement.appendChild( image );
+    };
+    // set src and srcset (start to load images)
+    lazyImage.src = image.dataset.src;
+    lazyImage.srcset = image.dataset.srcset;
+    // change state for class
+    imageContainer.nativeElement.classList.remove('inactive');
+    imageContainer.nativeElement.classList.add('active');
   }
 
   nextImage() {

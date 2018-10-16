@@ -46,7 +46,10 @@ export class CategoryComponent implements OnInit {
   }
 
   activeSlide(object: any) {
-    console.log('activeSlide', object);
+    object.previousSlideElement.classList.remove('visible');
+    object.previousSlideElement.classList.add('hidden');
+    object.activeSlideElement.classList.remove('hidden');
+    object.activeSlideElement.classList.add('visible');
   }
 
   /**

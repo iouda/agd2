@@ -40,4 +40,8 @@ export class AppComponent implements OnInit {
       } // end if
     }); // end subscribe
   }
+
+  log(key: any, value: any): void {
+    console.log(key, value);
+  }
 }

@@ -1,14 +1,16 @@
 <h2>{{category.name}}</h2>
 <div class="category-description" innerHTML="{{category.description}}"></div>
 <!-- FOR EACH POST IN CATEGORY -->
-<ng-container *ngFor="let post of posts">
-  <!-- IF HAS ANY POST IMAGES -->
-  <ng-container *ngIf="post?.postImages && post?.postImages.length > 0">
-    <!-- ADD IMAGE SLIDER -->  
-    <app-image-slider
-      [title]="post.title"
-      [images]="post.postImages"
-      (activeSlide)="activeSlide($event)"
-    ></app-image-slider>
+<div class="sliders" *ngIf="posts.length > 0">
+  <ng-container *ngFor="let post of posts">
+    <!-- IF HAS ANY POST IMAGES -->
+    <ng-container *ngIf="post?.postImages && post?.postImages.length > 0">
+      <!-- ADD IMAGE SLIDER -->  
+      <app-image-slider
+        [title]="post.title"
+        [images]="post.postImages"
+        (activeSlide)="activeSlide($event)"
+      ></app-image-slider>
+    </ng-container>
   </ng-container>
-</ng-container>
+</div>

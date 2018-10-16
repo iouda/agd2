@@ -11,15 +11,26 @@ import { Subject } from 'rxjs/Subject';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/observable/of';
 
+
+
+/**
+ * wp cRud API
+ *
+ * @export
+ * @class WpApiService
+ */
+
 @Injectable(/* {
   providedIn: 'root'
 } */)
 export class WpApiService {
 
-  // wpApiUrlSubject: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
-
   private headers: HttpHeaders;
   private wpApiUrl: string;
+  // public variables
+  maxResults = 100;
+  orderby = 'date';
+  order = 'asc'; // asc | desc
 
   constructor(
     private http: HttpClient,
@@ -30,17 +41,19 @@ export class WpApiService {
       'Content-Type': 'application/json'/* ,
       'Authorization': this.token */
     });
-
-    // subscribe wp api url
-    /* this.wpApiUrlSubject.subscribe((url: string) => {
-      if (url) {
-        this.wpApiUrl = url;
-      }
-    }); */
   }
 
+
   // READ API
-  // get all categories
+  /**
+   * get all categories
+   * filter query
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getCategories(
     filterName?: string,
     filterValue?: string
@@ -49,10 +62,22 @@ export class WpApiService {
     // return observable
     return this.read(
       'categories' +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
-  // get category by ID
+
+  /**
+   * get category by ID
+   * filter query
+   * @param {number} id
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getCategory(
     id: number,
     filterName?: string,
@@ -61,10 +86,21 @@ export class WpApiService {
     // return observable
     return this.read(
       'categories/' + id +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
-  // get posts
+
+  /**
+   * get posts
+   * filter query
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getPosts(
     filterName?: string,
     filterValue?: string
@@ -72,10 +108,22 @@ export class WpApiService {
     // return observable
     return this.read(
       'posts' +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
-  // get post by ID
+
+  /**
+   * get post by id
+   * filter query
+   * @param {number} id
+   * @param {string} [filterName]
+   * @param {string} [filterValue]
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   getPost(
     id: number,
     filterName?: string,
@@ -84,13 +132,22 @@ export class WpApiService {
     // return observable
     return this.read(
       'posts/' + id +
-      ((filterName && filterValue) ? `?filter[${filterName}]=${filterValue}` : '')
+      `?per_page=${this.maxResults}` +
+      `&filter[orderby]=${this.orderby}&order=${this.order}` +
+      ((filterName && filterValue) ? `&filter[${filterName}]=${filterValue}` : '')
     );
   }
 
 
 
-  // read
+  /**
+   * read from endpoint
+   * get wp results
+   * @param {string} endpoint
+   * @returns {Observable<any>}
+   * @memberof WpApiService
+   */
+
   read(endpoint: string): Observable<any> {
     // subject of url
     const subject: Subject<any> = new Subject<any>();

@@ -8,6 +8,9 @@ import {
   EventEmitter
 } from '@angular/core';
 
+// services
+import { UtilsService } from '../../services/utils/utils.service';
+
 @Component({
   selector: 'app-image-slider',
   templateUrl: './image-slider.component.html',
@@ -29,11 +32,18 @@ export class ImageSliderComponent implements OnInit {
   imageIndex = 0;
   numberOfImages: number;
 
-  constructor() {}
+  constructor(
+    private utils: UtilsService
+  ) {}
 
   ngOnInit() {
+    // console.log('slider', this.slider);
     // set numberOfImages
     this.numberOfImages = this.images.length;
+  }
+
+  getIdFromName(name: string): string {
+    return this.utils.normalizeString(name); // name.toLowerCase().replace(' ', '-').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
   onScreen(imageContainer: ElementRef, image: any) {
@@ -60,32 +70,40 @@ export class ImageSliderComponent implements OnInit {
   }
 
   nextImage() {
+    // current slide is prevSlide
+    const prevSlide = this.images[this.imageIndex].parentElement;
+    // change index of active slide
     this.imageIndex = (
       (this.imageIndex < this.numberOfImages - 1) ?
       this.imageIndex + 1 :
       0
     );
+    // emit event
     this.activeSlide.emit({
       slider: this.slider.nativeElement,
       activeSlideIndex: this.imageIndex,
-      activeSlideElement: this.images[this.imageIndex],
+      previousSlideElement: prevSlide,
+      activeSlideElement: this.images[this.imageIndex].parentElement,
       slideDirection: 'next'
     });
-    // console.log('nextImage imageIndex', this.imageIndex);
   }
   prevImage() {
+    // current slide is prevSlide
+    const prevSlide = this.images[this.imageIndex].parentElement;
+    // change index of active slide
     this.imageIndex = (
       (this.imageIndex > 0) ?
       this.imageIndex - 1 :
       this.numberOfImages - 1
     );
+    // emit event
     this.activeSlide.emit({
       slider: this.slider.nativeElement,
       activeSlideIndex: this.imageIndex,
-      activeSlideElement: this.images[this.imageIndex],
+      previousSlideElement: prevSlide,
+      activeSlideElement: this.images[this.imageIndex].parentElement,
       slideDirection: 'prev'
     });
-    // console.log('prevImage imageIndex', this.imageIndex);
   }
 
   log(key: any, value: any) {

@@ -1,13 +1,23 @@
 <!-- SLIDER CONTAINER -->
-<div class="slider-container">
+<div class="slider-container" [id]="'slider-' + getIdFromName(title)">
   <!-- SLIDER TITLE -->
   <div class="slider-title">{{title}}</div>
   <!-- SLIDER -->
-  <div #slider>
-    <ng-container *ngFor="let image of images">
-      <div appAppear class="image-container inactive" (appear)="onScreen($event, image)" >
-        <span class="loader">Loading...</span>
-      </div>
+  <div #slider class="slides">
+    <ng-container *ngFor="let image of images; let i = index">
+      <!-- VISIBLE FIRST SLIDE -->
+      <ng-container *ngIf="i === 0; else hidden">
+        <div appAppear [id]="'slide-'+i" class="slide image-container inactive visible" (appear)="onScreen($event, image)" >
+          <span class="loader">Loading...</span>
+        </div>
+      </ng-container>
+      <!-- HIDDEN SLIDES -->
+      <ng-template #hidden>
+          <div appAppear [id]="'slide-'+i" class="slide image-container inactive hidden" (appear)="onScreen($event, image)" >
+            <span class="loader">Loading...</span>
+          </div>
+      </ng-template>
+      
     </ng-container>
   </div>
   <!-- SLIDER CONTROLS -->

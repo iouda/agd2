@@ -76,6 +76,7 @@ app-image-slider > .slider-container > .slides > .slide.hidden {
 body{
 	font-family: ArchaicNeu-Regular;
 	font-weight: 100;
+	overflow-x: hidden
 }
 	
 a{
@@ -91,13 +92,9 @@ h1{
 	font-size: 17px;
 }
 
-
-
 /* ------------------- BODY KONEC------------------- */
 
 /* ------------------- HEAD ZACATEK------------------- */
-
-
 
 .header{
 	padding: 15px;
@@ -111,49 +108,252 @@ h1{
 
 #logotype{
 	float: left;
-	}
+}
 
 .head-social{
 	display: block;
 	text-align: right;
 	float: right;
 	margin-right: 30px;
-
-
 }
 
-.head-social p{
+.head-social a{
 	font-size: 17px;
 }
 
 
+/* modal start */
+
+
+
+.modal-container {
+
+		position: fixed;
+		background-color: white;
+		width: 100%;
+		height: calc(100% - 76px);
+		top: 76px;
+		left: 50%;
+		padding: 30px;
+
+
+
+
+
+
+		-webkit-transform: translate(-50%, 200%);
+		-ms-transform: translate(-50%, 200%);
+		transform: translate(-50%, 200%);
+
+
+		/* transition: transform 0.5s ease-in-out; */
+
+		transition: all 1s ease;
+
+}
+
+
+.modal:before {
+	content:"";
+	position: fixed;
+	display:none;
+	background-color: rgba(255, 255, 255, 0);
+	top:0;
+	left:0;
+	height:100%;
+	width: 100%;
+
+}
+
+.modal{
+	position: relative;
+	z-index: 9999991;
+}
+
+.modal:target:before{
+	display: block;
+
+}
+
+
+.modal:target .modal-container{
+	-webkit-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
+	transform: translate(-50%, 0);
+}
+
+
+
+
+
+
+
+
+
+
+/* modal koniec */
+
+
+
+
 
 /* ------------------- HEAD KONEC------------------- */
+
 /* ------------------- MENU ZACATEK------------------- */
 
 app-menu {
-	position: relative;
-	left: 0px;
-	top: 0px;
-	width: 300px;
-	height: 100%;
+	/* background-color: gray; */
+	position: fixed;
+	left: -200px;  /* rozjížděcí menu */
+	top: 76px;
+	width: 234px;
+	height: 100vh;
+	transition: left 1s;
 }
 
 app-menu > div{
-	background-color: aqua;
-
-
+	width:160px;
+	padding-top: 15px;
+	/* padding-bottom: 20px; */
 }
 
 app-menu > div > a{
-	color: red;
-	margin-left: 20px;
+	color: black;
+	margin-left: 15px;
+	font-size: 17px;
+	display: inline-block;
+}
+
+app-menu:hover {
+	left: 0;
+}
+
+app-menu:hover + .page-content {
+	left:239px;
+	transition: left 1s;
+}
+
+.kolecko{
+	position: absolute;
+	left: 210px;
+	top: 0;
+	width:10px;
+}
+
+/* ------------------- MENU KONEC ------------------- */
+
+/* ------------------- CONTENT ZACATEK ------------------- */
+
+.page-content {
+	position: absolute;
+	float: left;
+	left: 59px;
+	top: 125px;
+	width: calc(100% - 300px);
+	transition: left 1s;
+}
+
+
+/* description start */
+h2{ /* velikost nadpisu */
+	font-size: 30px;
+	padding-bottom: 10px;
+	text-transform:uppercase;
+}
+
+.category-description{
+	width: 310px;
+	font-size: 15px;
+}
+/* description konec */
+
+
+
+
+
+
+
+/* obrazky start */
+
+
+
+
+
+
+.sliders img{
+	margin-left:200px;
+	margin-bottom: 100px;
+	width: 70vw;
+	height: auto;
+	box-shadow: 40px 40px 50px rgb(51, 51, 51);
+	transition: left 1s;
+}
+
+.slider-title{
+	position: absolute;
+	font-size: 11px;
+	text-transform:uppercase;
+	transform: rotate(270deg);
+	margin-left:-150px;
+	margin-top: 220px;
+}
+
+.slides{
+	position: relative;
+
 }
 
 
 
+/* animace odjezdu obrazku doleva*/
+
+     /* empty */
+
+/* animace odjezdu obrazku doleva */
+
+/* obrazky konec */
 
 
 
 
-/* ------------------- MENU KONEC------------------- */
+
+
+
+
+
+/* controls start */
+	.slider-controls{
+		width: 70vw;
+		position:absolute;
+		z-index: 99999;
+		margin-left:200px;
+		height: calc(100% - 100px);
+
+	}
+
+	.prev{
+		float: left;
+		top: 0;
+		height: 100%;
+		width:50%;
+		cursor: url("assets/cursor_prev.png"), auto;
+		border: none;
+		background-color: rgba(255, 255, 255, 0);
+	}
+
+	.next{
+		float: right;
+		top: 0;
+		height: 100%;
+		width:50%;
+		cursor: url("assets/cursor_next.png"), auto;
+		border: none;
+		background-color: rgba(255, 255, 255, 0)
+	}
+/* controls end */
+
+
+
+
+/* ------------------- CONTENT KONEC------------------- */
+

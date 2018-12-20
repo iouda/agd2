@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // services
 import { WpApiService } from '../../services/wp-api/wp-api.service';
+import { ScrollService } from '../../services/scroll/scroll.service';
 
 // models
 import { Category } from '../../models/category';
@@ -16,7 +17,8 @@ export class MenuComponent implements OnInit {
   menuItems = new Array<any>();
 
   constructor(
-    private wpApiService: WpApiService
+    private wpApiService: WpApiService,
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,17 @@ export class MenuComponent implements OnInit {
         // console.log('menuItems', this.menuItems);
       } // end if
     }); // end subscribe
+  }
+
+  scrollTo(elementId: string) {
+    this.scrollService.scrollTo(elementId, 200, 'linear', () => {
+      console.log(`Just finished scrolling to ${window.pageYOffset}px`);
+    });
+  }
+
+  preventClick(event: any): void {
+    // console.log(event);
+    event.preventDefault();
   }
 
 }

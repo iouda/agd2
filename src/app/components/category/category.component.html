@@ -1,5 +1,7 @@
-<h2>{{category.name}}</h2>
-<div class="category-description" innerHTML="{{category.description}}"></div>
+<div class="category-text">
+  <h2>{{category.name}}</h2>
+  <div class="category-description" innerHTML="{{category.description}}"></div>
+</div>
 <!-- FOR EACH POST IN CATEGORY -->
 <div class="sliders" *ngIf="posts.length > 0">
   <ng-container *ngFor="let post of posts">

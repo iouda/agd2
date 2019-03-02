@@ -1,4 +1,8 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 
 // services
 import { WpApiService } from '../../services/wp-api/wp-api.service';
@@ -43,13 +47,6 @@ export class CategoryComponent implements OnInit {
         // console.log('model posts', this.posts);
       }
     });
-  }
-
-  activeSlide(object: any) {
-    object.previousSlideElement.classList.remove('visible');
-    object.previousSlideElement.classList.add('hidden');
-    object.activeSlideElement.classList.remove('hidden');
-    object.activeSlideElement.classList.add('visible');
   }
 
   /**

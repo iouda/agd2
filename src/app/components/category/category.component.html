@@ -1,6 +1,7 @@
+
 <div class="category-text">
-  <h2>{{category.name}}</h2>
-  <div class="category-description" innerHTML="{{category.description}}"></div>
+    <h2>{{category.name}}</h2>
+    <div class="category-description" [innerHTML]="category.description"></div>
 </div>
 <!-- FOR EACH POST IN CATEGORY -->
 <div class="sliders" *ngIf="posts.length > 0">
@@ -11,7 +12,6 @@
       <app-image-slider
         [title]="post.title"
         [images]="post.postImages"
-        (activeSlide)="activeSlide($event)"
       ></app-image-slider>
     </ng-container>
   </ng-container>

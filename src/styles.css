@@ -52,12 +52,16 @@ table {
 
 /* You can add global styles to this file, and also import other style files */
 
-app-image-slider > .slider-container > .slides > .slide.visible {
-    display: block;
+app-head {
+	display: block;
 }
 
-app-image-slider > .slider-container > .slides > .slide.hidden {
-    display: none;
+button:focus {
+	outline: 0;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 
@@ -74,22 +78,22 @@ app-image-slider > .slider-container > .slides > .slide.hidden {
 
 /* ------------------- BODY ZACATEK------------------- */
 
-body{
+body {
 	font-family: ArchaicNeu-Regular;
 	font-weight: 100;
 	overflow-x: hidden
 }
 	
-a{
+a {
 	text-decoration: none;
 	color: black;
 }
 
-a:hover{
+a:hover {
 	color: rgb(0, 255, 0);
 }
 
-h1{
+h1 {
 	font-size: 17px;
 }
 
@@ -97,28 +101,28 @@ h1{
 
 /* ------------------- HEAD ZACATEK------------------- */
 
-.header{
+.header {
 	padding: 15px;
 	width: 100%;
-	height: 45px;
-	background-color: white;
+	/* height: 45px; */
+	/* background-color: white; */
 	border-bottom: 1px solid black;
-	z-index: -9631;
+	z-index: 9631;
 	position: fixed;
 }
 
-#logotype{
+#logotype {
 	float: left;
 }
 
-.head-social{
+.head-social {
 	display: block;
 	text-align: right;
-	float: right;
-	margin-right: 30px;
+	/* float: right;
+	margin-right: 30px; */
 }
 
-.head-social a{
+.head-social a {
 	font-size: 17px;
 }
 
@@ -136,11 +140,6 @@ h1{
 		top: 76px;
 		left: 50%;
 		padding: 30px;
-
-
-
-
-
 
 		-webkit-transform: translate(-50%, 200%);
 		-ms-transform: translate(-50%, 200%);
@@ -166,18 +165,18 @@ h1{
 
 }
 
-.modal{
+.modal {
 	position: relative;
 	z-index: 9999991;
 }
 
-.modal:target:before{
+.modal:target:before {
 	display: block;
 
 }
 
 
-.modal:target .modal-container{
+.modal:target .modal-container {
 	-webkit-transform: translate(-50%, 0);
 	-ms-transform: translate(-50%, 0);
 	transform: translate(-50%, 0);
@@ -206,19 +205,19 @@ app-menu {
 	/* background-color: gray; */
 	position: fixed;
 	left: -200px;  /* rozjížděcí menu */
-	top: 76px;
-	width: 234px;
+	top: calc(82px + 24px);
+	width: 239px;
 	height: 100vh;
-	transition: left 1s;
+	transition: left .3s;
 }
 
-app-menu > div{
+app-menu > div {
 	width:160px;
 	padding-top: 15px;
 	/* padding-bottom: 20px; */
 }
 
-app-menu > div > a{
+app-menu > div > a {
 	color: black;
 	margin-left: 15px;
 	font-size: 17px;
@@ -230,15 +229,24 @@ app-menu:hover {
 }
 
 app-menu:hover + .page-content {
-	left:239px;
-	transition: left 1s;
+	left: 259px;
+	transition: left .3s;
 }
 
-.kolecko{
+app-menu + .page-content {
+	left: 59px;
+	transition: left .3s;
+}
+
+.kolecko {
 	position: absolute;
 	left: 210px;
 	top: 0;
-	width:10px;
+	/* width:10px; */
+	width: 20px;
+	height: 20px;
+	background-color: black;
+	border-radius: 50%;
 }
 
 /* ------------------- MENU KONEC ------------------- */
@@ -246,40 +254,44 @@ app-menu:hover + .page-content {
 /* ------------------- CONTENT ZACATEK ------------------- */
 
 .page-content {
-	position: absolute;
-	/* float: left; */
+	position: relative;
 	left: 59px;
 	top: 125px;
-	/* width: calc(100% - 300px);
-	transition: left 1s; */
+	width: calc(100% - 59px);
+	/* transition: left 1s; */
 }
 
 app-category.category {
-	position: relative;
-	width: 100%;
-	height: 90vh;
-	overflow: scroll;
 	display: block;
 	margin-bottom: 24px;
 }
 
-app-category.category > div.category-text {
-	position: absolute;
+app-category > .category-text {
+	/* position: absolute;
 	left: 0px;
-	bottom: 100px;
+	bottom: 100px; */
+	margin-bottom: 20%;
+	position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -o-sticky;
+    position: -ms-sticky;
+	position: sticky;
+	top: calc(82px + 24px);
 }
+
+
 
 
 
 
 /* description start */
-h2{ /* velikost nadpisu */
+h2 { /* velikost nadpisu */
 	font-size: 30px;
 	padding-bottom: 10px;
 	text-transform:uppercase;
 }
 
-.category-description{
+.category-description {
 	width: 310px;
 	font-size: 15px;
 }
@@ -291,86 +303,107 @@ h2{ /* velikost nadpisu */
 
 
 
-/* obrazky start */
+/* SLIDERS */
 
-
-
-
-.sliders {
-	overflow-y: scroll;
-	/* position: absolute; */
+.sliders > app-image-slider {
+	position: relative;
+	display: block;
+	width: 100%;
+	/* overflow: hidden; */
 }
 
-.sliders img{
-	margin-left:200px;
-	margin-bottom: 100px;
+.sliders > app-image-slider > .slider-container {
+	position: relative;
+	transition: left ease-in-out .3s;
+	pointer-events: none;
+}
+
+.sliders > app-image-slider > .slider-container > .slides {
+	position: relative;
+	width: 100%;
+	height: auto;
+	pointer-events: none;
+}
+
+.sliders > app-image-slider > .slider-container > .slides > .slide {
+	display: inline-block;
 	width: 70vw;
 	height: auto;
-	box-shadow: 40px 40px 50px rgb(51, 51, 51);
-	transition: left 1s;
+	margin: 0 200px 100px 200px;
+	padding: 0;
 }
 
-.slider-title{
+.sliders > app-image-slider > .slider-container > .slides > .slide > * {
+	display: inline-block;
+	width: 70vw;
+	height: auto;
+	min-height: 300px;
+	padding: 0;
+	box-shadow: 40px 40px 50px rgb(51, 51, 51);
+}
+
+@keyframes blicking {
+	from {
+	  background-color: white;
+	}
+  
+	to {
+	  background-color: black;
+	}
+  }
+
+.sliders > app-image-slider > .slider-container > .slides > .slide > .loader {
+	animation-duration: 1s;
+  	animation-name: blicking;
+  	animation-iteration-count: infinite;
+  	animation-direction: alternate;
+}
+
+
+.slider-title {
 	position: absolute;
 	font-size: 11px;
-	text-transform:uppercase;
+	text-transform: uppercase;
 	transform: rotate(270deg);
-	margin-left:-150px;
+	margin-left: -150px;
 	margin-top: 220px;
 }
-
-.slides{
-	position: relative;
-
-}
-
-
-
-/* animace odjezdu obrazku doleva*/
-
-     /* empty */
-
-/* animace odjezdu obrazku doleva */
-
-/* obrazky konec */
-
-
-
-
 
 
 
 
 
 /* controls start */
-	.slider-controls{
-		width: 70vw;
-		position:absolute;
-		z-index: 99999;
-		margin-left:200px;
-		height: calc(100% - 100px);
+.slider-controls {
+	width: 70vw;
+	position: absolute;
+	z-index: 99999;
+	left: 200px;
+	height: calc(100% - 100px);
+	padding: 0;
+	margin: 0;
+}
 
-	}
+button.prev, button.next {
+	top: 0;
+	height: 100%;
+	width:50%;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+	padding: 0;
+	margin: 0;
+}
 
-	.prev{
-		float: left;
-		top: 0;
-		height: 100%;
-		width:50%;
-		cursor: url("assets/cursor_prev.png"), auto;
-		border: none;
-		background-color: rgba(255, 255, 255, 0);
-	}
+button.prev {
+	float: left;
+	cursor: url("assets/cursor_prev.png"), auto;
+	
+}
 
-	.next{
-		float: right;
-		top: 0;
-		height: 100%;
-		width:50%;
-		cursor: url("assets/cursor_next.png"), auto;
-		border: none;
-		background-color: rgba(255, 255, 255, 0)
-	}
+button.next {
+	float: right;
+	cursor: url("assets/cursor_next.png"), auto;
+}
 /* controls end */
 
 

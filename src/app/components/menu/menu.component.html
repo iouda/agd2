@@ -1,7 +1,9 @@
-<div *ngFor="let item of menuItems">
-  <a href="#{{item.slug}}">{{item.name}}</a>
-</div>
+<ng-container *ngFor="let item of menuItems">
+  <div (click)="scrollTo(item.slug)">
+    <a href="" (click)="preventClick($event)" >{{item.name}}</a>
+  </div>
+</ng-container>
 
 <div class="kolecko">
-  <img id="kolecko" src="assets/kolecko_menu.svg" width="20px" height="20px">
+  <!-- <img id="kolecko" src="assets/kolecko_menu.svg" width="20px" height="20px"> -->
 </div>

@@ -58,7 +58,7 @@ export class WpApiService {
     filterName?: string,
     filterValue?: string
   ): Observable<any> {
-    console.log('wpApiService', 'getCategories');
+    // console.log('wpApiService', 'getCategories');
     // return observable
     return this.read(
       'categories' +

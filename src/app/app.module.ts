@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfigService } from './services/config/config.service';
 import { WpApiService } from './services/wp-api/wp-api.service';
 import { UtilsService } from './services/utils/utils.service';
+import { ScrollService } from './services/scroll/scroll.service';
 
 // components
 import { AppComponent } from './app.component';
@@ -39,7 +40,8 @@ import { AppearDirective } from './directives/appear/appear.directive';
   providers: [
     ConfigService,
     WpApiService,
-    UtilsService
+    UtilsService,
+    ScrollService
   ],
   bootstrap: [AppComponent]
 })
